@@ -1,11 +1,12 @@
 import React from 'react';
+import { Button } from 'antd';
 
 function App() {
-  return (
-    <div>
-      app
-    </div>
-  );
+    return (
+        <div>
+            <Button>button</Button>
+        </div>
+    );
 }
 
 export default App;

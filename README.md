@@ -1,46 +1,150 @@
-# Getting Started with Create React App
+# 1.项目创建过程
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+指定项目名称的方式创建:
 
-## Available Scripts
+```shell
+npx create-react-app my-app --template typescript
+```
+在一个目录里面创建:
+```shell
+npx --yes create-react-app . --template typescript
+```
 
-In the project directory, you can run:
+# 2. 安装antd
 
-### `npm start`
+```shell
+yarn add antd
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 高级配置 使用react-app-rewired对项目重新配置
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```shell
+yarn add react-app-rewired customize-cra
+```
 
-### `npm test`
+修改package
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```text
+/* package.json */
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+}
+```
 
-### `npm run build`
+然后在项目根目录创建一个 config-overrides.js 用于修改默认配置。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+module.exports = function override(config, env) {
+    // do stuff with the webpack config...
+    return config;
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 使用babel-plugin-import 实现按需加载
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```shell
+yarn add babel-plugin-import
+```
 
-### `npm run eject`
+```text
++ const { override, fixBabelImports } = require('customize-cra');
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- module.exports = function override(config, env) {
+-   // do stuff with the webpack config...
+-   return config;
+- };
++ module.exports = override(
++   fixBabelImports('import', {
++     libraryName: 'antd',
++     libraryDirectory: 'es',
++     style: 'css',
++   }),
++ );
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# 自定义主题 / 启用less
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```text
+- const { override, fixBabelImports } = require('customize-cra');
++ const { override, fixBabelImports, addLessLoader } = require('customize-cra');
 
-## Learn More
+module.exports = override(
+  fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+-   style: 'css',
++   style: true,
+  }),
++ addLessLoader({
++   lessOptions:{
++     javascriptEnabled: true,
++     modifyVars: { '@primary-color': '#1DA57A' },
++   },
++ }),
+);
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 最后,一定要安装less+less-loader
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```shell
+yarn add less less-loader
+```
+
+# 其他问题
+
+1. less-loader 6.x版本之后customize-cra对于less使用有问题.
+   需要使用customize-cra-less-loader进行加兼容
+
+2. less-loader 必须使用6.x,否则addLessLoader的配置将不会生效
+   config-overrides.js
+
+```javascript
+const { override, fixBabelImports, addWebpackAlias, addDecoratorsLegacy } = require('customize-cra');
+const addLessLoader = require('customize-cra-less-loader')
+const path = require('path')
+
+module.exports = override(
+    fixBabelImports('import', {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true
+    }),
+    addLessLoader({
+        lessLoaderOptions: {
+            lessOptions: {
+                javascriptEnabled: true,
+                modifyVars: {
+                    // 'border-radius-base': '6px',
+                    // 'primary-color': 'green',
+                    // 'link-color': 'green'
+                },
+            }
+        }
+    }),
+    addWebpackAlias({
+        '@': path.resolve('./src'),
+    }),
+    addDecoratorsLegacy(),
+)
+```
+
+package.json
+
+```json
+{
+  "less": "^4.1.3",
+  "less-loader": "^6.2.0"
+}
+```
+
+# 其他参考资料:
+
+[Ant Design API](https://ant.design/components/overview-cn/)
+
+[React Router V6](https://reactrouter.com/docs/en/v6)
