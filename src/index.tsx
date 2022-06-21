@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from '@/pages/Home'
-import List from '@/pages/List'
+import Home from '@/pages/admin/Home'
+import List from '@/pages/admin/List'
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

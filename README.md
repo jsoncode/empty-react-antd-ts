@@ -143,6 +143,22 @@ package.json
 }
 ```
 
+
+### 目录说明
+
+```text
+public/
+    index.html      主文件
+src
+    components      公共组件
+    pages           页面代码
+        admin       管理员后台
+        userPage    用户前台页面
+    index.tsx       入口文件
+config-overrides.js 项目配置文件
+tsconfig.json       ts配置文件
+```
+
 # 其他参考资料:
 
 [Ant Design API](https://ant.design/components/overview-cn/)
