@@ -1,6 +1,11 @@
-const { override, fixBabelImports, addWebpackAlias } = require('customize-cra');
+const { override, fixBabelImports, addWebpackAlias, adjustStyleLoaders } = require('customize-cra');
 const addLessLoader = require('customize-cra-less-loader')
 const path = require('path')
+const closedMap = config => {
+    // 修改掉webpack里面devtool的配置
+    config.devtool = config.mode === 'development' ? 'cheap-module-source-map' : false;
+    return config;
+};
 
 module.exports = override(
     // 使用babel-plugin-import来进行按需加载 ,必须安装babel-plugin-import
@@ -25,6 +30,24 @@ module.exports = override(
     addWebpackAlias({
         '@': path.resolve('./src'),
     }),
+
+    // 关闭css 输出sourceMap文件
+    adjustStyleLoaders(({ use: [, css, postcss, resolve, processor] }) => {
+        css.options.sourceMap = false;         // css-loader
+        postcss.options.sourceMap = false;     // postcss-loader
+        // when enable pre-processor,
+        // resolve-url-loader will be enabled too
+        if (resolve) {
+            resolve.options.sourceMap = false;   // resolve-url-loader
+        }
+        // pre-processor
+        if (processor && processor.loader.includes('sass-loader')) {
+            processor.options.sourceMap = false; // sass-loader
+        }
+    }),
+
+    // 关闭js输出sourceMap
+    closedMap,
     // disableEsLint(), // 禁用eslint
     // useEslintRc(configFile), // 修改eslint默认代码规范
     // addWebpackPlugin(plugin), // 向webpack的配置中添加plugin插件
