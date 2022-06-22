@@ -1,4 +1,10 @@
-html, body, #root {
+html, body, #root, .pageLoading {
     height: 100vh;
     overflow: hidden;
+}
+
+.pageLoading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
