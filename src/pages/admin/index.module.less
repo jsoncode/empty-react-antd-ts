@@ -6,9 +6,22 @@
   .menu {
     width: 300px;
     flex-shrink: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    &:hover {
+      overflow-y: overlay;
+    }
   }
 
   .rightContent {
     flex: 1;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+
+    > div {
+      flex: 1;
+    }
   }
 }
