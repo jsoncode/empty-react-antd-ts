@@ -1,0 +1,46 @@
+.page {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+
+  .view {
+    flex: 1;
+    height: 100%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    background-color: #fafafa;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form {
+    width: 400px;
+    overflow: auto;
+    padding: 10px 0;
+
+    .formTitle {
+      padding: 0 20px;
+    }
+
+    .formItem {
+      padding: 10px 20px;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+
+    :global {
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+
+      .ant-form-item-label > label::after {
+        margin-right: 15px;
+      }
+    }
+  }
+}
