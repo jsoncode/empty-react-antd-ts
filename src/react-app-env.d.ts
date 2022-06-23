@@ -3,6 +3,4 @@ declare module '*.module.less' {
         readonly [key: string]: string
     }
     export default classes
-
-    declare module '*.less'
 }

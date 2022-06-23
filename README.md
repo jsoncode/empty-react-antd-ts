@@ -124,7 +124,55 @@ module.exports = {
 }
 ```
 
-# 7. 关闭sourceMap
+# 7. 开启开启less/css module
+
+修改配置: ./src/react-app-env.d.ts
+
+```typescript
+declare module '*.module.less' {
+    const classes: {
+        readonly [key: string]: string
+    }
+    export default classes
+}
+```
+
+在组件中可以使用: App.tsx
+
+```tsx
+import React, { FC } from 'react';
+import { Button } from "antd";
+import styles from '@/pages/App.module.less' // 必须开启less module,文件名必须是 *.module.less
+
+const Index: FC = () => {
+    return <div className={styles.appPage}>
+        <a>test</a>
+        <Button>test</Button>
+    </div>
+}
+
+export default Index;
+```
+
+App.module.less
+
+```less
+.appPage {
+  padding: 20px;
+  
+  a{
+    color: red;
+  }
+  
+  :global{
+    .ant-btn{
+      color: red;
+    }
+  }
+}
+```
+
+# 8. 关闭sourceMap
 
 安装跨平台配置依赖
 
