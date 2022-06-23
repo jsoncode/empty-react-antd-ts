@@ -21,7 +21,7 @@ yarn add antd
 # 高级配置 使用@craco/craco对项目重新配置
 
 ```shell
-yarn add @craco/craco craco-less
+yarn add @craco/craco craco-less -D
 ```
 
 修改package
@@ -34,6 +34,12 @@ yarn add @craco/craco craco-less
     "test": "craco test"
   }
 }
+```
+
+### 按需加载antd
+
+```shell
+yarn add babel-plugin-import -D
 ```
 
 然后在项目根目录创建一个 craco.config.js 用于修改默认配置。
@@ -101,7 +107,7 @@ module.exports = {
 # 关闭sourceMap
 安装跨平台配置依赖
 ```shell
-yarn add cross-env
+yarn add cross-env -D
 ```
 
 ```json
@@ -113,6 +119,10 @@ yarn add cross-env
 ```
 
 # 最后,一定要安装less+less-loader
+
+```shell
+yarn add less less-loader -D
+```
 
 
 ### 目录说明
