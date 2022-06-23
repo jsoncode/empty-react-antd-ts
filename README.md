@@ -98,6 +98,20 @@ module.exports = {
 }
 ```
 
+# 关闭sourceMap
+安装跨平台配置依赖
+```shell
+yarn add cross-env
+```
+
+```json
+{
+  "scripts": {
+    "build": "cross-env GENERATE_SOURCEMAP=false craco build"
+  }
+}
+```
+
 # 最后,一定要安装less+less-loader
 
 ```shell
