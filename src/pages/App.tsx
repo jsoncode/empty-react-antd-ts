@@ -4,12 +4,18 @@ import Icon from '@ant-design/icons'
 import styles from '@/pages/App.module.less'
 
 import { ReactComponent as Test } from '@/assets/test.svg'
+import { ReactComponent as Test2 } from '@/assets/test2.svg'
 
 const Index: FC = () => {
     return <div className={styles.appPage}>
-        <Icon component={Test}/>
-        <Link to={'/user'}>aaaa</Link>
-        <Link to={'/admin'}>bbbb</Link>
+        <Link to={'/user'} className={styles.link}>
+            <Icon component={Test}/>
+            <span>User</span>
+        </Link>
+        <Link to={'/admin'} className={styles.link}>
+            <Icon component={Test2}/>
+            <span>Admin</span>
+        </Link>
     </div>
 }
 
