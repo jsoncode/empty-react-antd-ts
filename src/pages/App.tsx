@@ -10,11 +10,9 @@ const Index: FC = () => {
     return <div className={styles.appPage}>
         <Link to={'/user'} className={styles.link}>
             <Icon component={Test}/>
-            <span>User</span>
         </Link>
         <Link to={'/admin'} className={styles.link}>
             <Icon component={Test2}/>
-            <span>Admin</span>
         </Link>
     </div>
 }
