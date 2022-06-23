@@ -114,9 +114,6 @@ yarn add cross-env
 
 # 最后,一定要安装less+less-loader
 
-```shell
-yarn add less less-loader@6.2.0
-```
 
 ### 目录说明
 
