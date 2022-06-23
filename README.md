@@ -161,13 +161,13 @@ App.module.less
 ```less
 .appPage {
   padding: 20px;
-  
-  a{
+
+  a {
     color: red;
   }
-  
-  :global{
-    .ant-btn{
+
+  :global {
+    .ant-btn {
       color: red;
     }
   }
@@ -211,4 +211,6 @@ tsconfig.json       ts配置文件
 
 [Ant Design API](https://ant.design/components/overview-cn/)
 
-[React Router V6](https://reactrouter.com/docs/en/v6)
+[React Router V6 API](https://reactrouter.com/docs/en/v6)
+
+[免费SVG ICON 库](https://www.iconfont.cn/)
