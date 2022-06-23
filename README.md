@@ -1,4 +1,4 @@
-# 1.项目创建过程
+# 1.使用create-react-app 创建项目
 
 指定项目名称的方式创建:
 
@@ -6,22 +6,22 @@
 npx create-react-app my-app --template typescript
 ```
 
-在一个目录里面创建:
+或 在一个目录里面创建:
 
 ```shell
 npx --yes create-react-app . --template typescript
 ```
 
-# 2. 安装antd
+# 2. 安装ui框架antd
 
 ```shell
 yarn add antd
 ```
 
-# 高级配置 使用@craco/craco对项目重新配置
+# 3. 高级配置 使用@craco/craco对项目重新配置
 
 ```shell
-yarn add @craco/craco craco-less -D
+yarn add @craco/craco -D
 ```
 
 修改package
@@ -36,28 +36,49 @@ yarn add @craco/craco craco-less -D
 }
 ```
 
-### 按需加载antd
-
-```shell
-yarn add babel-plugin-import -D
-```
-
-然后在项目根目录创建一个 craco.config.js 用于修改默认配置。
+创建一个配置文件: craco.config.js
 
 ```javascript
-const CracoLessPlugin = require('craco-less')
-const path = require("path");
+module.exports = {}
+```
+
+# 4. 按需加载antd
+
+安装依赖
+
+```shell
+yarn add babel-plugin-import less less-loader -D
+```
+
+修改配置: craco.config.js
+
+```javascript
 module.exports = {
     babel: {
-        // 使用babel-plugin-import 实现按需加载
         plugins: [[
             'import', {
                 libraryName: 'antd',
                 libraryDirectory: 'es',
-                style: true
+                style: true // 启用less
             }
         ]],
     },
+};
+```
+
+# 5. 自定义antd主题
+
+安装依赖
+
+```shell
+yarn add craco-less -D
+```
+
+修改配置: craco.config.js
+
+```javascript
+const CracoLessPlugin = require('craco-less')
+module.exports = {
     plugins: [
         {
             plugin: CracoLessPlugin,
@@ -74,9 +95,9 @@ module.exports = {
 };
 ```
 
-# 自定义路径变量
+# 6.自定义路径变量
 
-在 tsconfig.json 添加baseUrl和paths字段
+1. 在 tsconfig.json 添加baseUrl和paths字段
 
 ```json
 {
@@ -91,24 +112,27 @@ module.exports = {
 }
 ```
 
-并在craco.config.js里面添加配置
+2. 并在craco.config.js里面添加配置
 
-```text
+```javascript
 module.exports = {
-   ...
-   webpack: {
-      alias: {
-         '@': path.resolve('./src'),
-      },
-   },
+    webpack: {
+        alias: {
+            '@': path.resolve('./src'),
+        },
+    },
 }
 ```
 
-# 关闭sourceMap
+# 7. 关闭sourceMap
+
 安装跨平台配置依赖
+
 ```shell
 yarn add cross-env -D
 ```
+
+修改package.json中的build命令
 
 ```json
 {
@@ -118,14 +142,7 @@ yarn add cross-env -D
 }
 ```
 
-# 最后,一定要安装less+less-loader
-
-```shell
-yarn add less less-loader -D
-```
-
-
-### 目录说明
+# 目录说明
 
 ```text
 public/
