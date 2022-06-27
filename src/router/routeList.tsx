@@ -1,3 +1,4 @@
+import NotFound from '@/pages/NotFound';
 import React from 'react'
 import { RouteObject } from 'react-router-dom';
 
@@ -42,5 +43,8 @@ export const routeList: RouteObject[] = [
                 path: 'list', element: <AdminList/>,
             }
         ]
-    }
+    },
+    {
+        path: '*', element: <NotFound/>,
+    },
 ];

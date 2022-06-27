@@ -4,7 +4,7 @@ import styles from './index.module.less'
 
 const Index: FC = (s) => {
     return <div className={styles.page}>
-        <h1>admin home</h1>
+        <h1>test2</h1>
 
         <Link to={'/admin/list'}>goto list</Link>
     </div>
