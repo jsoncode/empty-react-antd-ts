@@ -4,7 +4,7 @@ import styles from './index.module.less'
 import defaultProps, { config } from './config';
 import RenderFormItem from '@/pages/user/Home/RenderFormItem';
 
-const Index: FC = (s) => {
+const Index: FC = () => {
     const [form] = Form.useForm()
     const [drawerProps, setDrawerProps] = useState<DrawerProps>({})
 
