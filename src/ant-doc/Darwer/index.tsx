@@ -39,7 +39,11 @@ const Index: FC = (s) => {
         if (value[key] === undefined) {
             delete newProps[key]
         } else {
-            if (defaultProps[key] === undefined || typeof value[key] === 'object' && JSON.stringify(value[key]) !== JSON.stringify(defaultProps[key]) || (typeof value[key] !== 'object' && value[key] !== defaultProps[key])) {
+            if (
+                defaultProps[key] === undefined
+                || (typeof value[key] === 'object' && JSON.stringify(value[key]) !== JSON.stringify(defaultProps[key]))
+                || (typeof value[key] !== 'object' && value[key] !== defaultProps[key])
+            ) {
                 newProps = {
                     ...newProps,
                     ...value
