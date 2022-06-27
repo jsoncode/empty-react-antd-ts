@@ -17,24 +17,9 @@ const App = () => {
         // 如果menu配置了multiple,这里selectedKeys会有多个值.否则只有一个值.
         setCurrent([key]);
 
-        let keyPath = key.split('-')
-
-        let item: any = get(menuList, 0)
-
+        let item: any = findMenuByKey(menuList, key)
         if (item?.route) {
             navigate(item.route)
-        }
-
-        function get(list: any, index: number) {
-            let key = keyPath[index]
-            let back: any = null
-            if (list[key].children) {
-                index++
-                back = get(list[key].children, index)
-            } else {
-                back = list[key]
-            }
-            return back;
         }
 
     };
@@ -85,15 +70,13 @@ const App = () => {
         }
         setOpenKeys(newOpen)
     };
-
-    // 根据路由变化,动态展开菜单和选中菜单
-    useEffect(() => {
+    const findMenuByPath = (pathname: string) => {
         const item = menuMap[pathname]
+        let opens: string[] = []
         if (item) {
             const key = item.key
             setCurrent([key])
 
-            let opens: string[] = []
             let keyPath = key.split('-')
             // 最后一个不是二级菜单,肯定是一个菜单项,所以不需要设置到openKeys里
             keyPath.pop()
@@ -105,8 +88,36 @@ const App = () => {
                 }
                 opens.push(k)
             })
-            setOpenKeys(opens)
+
         }
+        return opens
+    }
+
+    function findMenuByKey(list: any, key: string) {
+
+        let keyPath: string[] = key.split('-')
+
+        return get(list, 0)
+
+        // 通过keyPath递归查找,比遍历性能更高
+        function get(list: any, index: number) {
+            let key = keyPath[index]
+            let back: any = null
+            if (list[key].children) {
+                index++
+                back = get(list[key].children, index)
+            } else {
+                back = list[key]
+            }
+            return back;
+        }
+    }
+
+
+    // 根据路由变化,动态展开菜单和选中菜单
+    useEffect(() => {
+        let opens = findMenuByPath(pathname)
+        setOpenKeys(opens)
     }, [pathname])
 
     return <div className={styles.page}>
