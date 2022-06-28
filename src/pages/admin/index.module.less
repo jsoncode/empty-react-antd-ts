@@ -1,10 +1,9 @@
 .page {
   display: flex;
   align-items: stretch;
-  height: 100vh;
 
   .menu {
-    width: 300px;
+    max-width: 300px;
     flex-shrink: 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -16,9 +15,39 @@
     display: flex;
     align-items: stretch;
     flex-direction: column;
+    overflow: hidden;
 
     > div {
       flex: 1;
+    }
+
+    :global {
+      .ant-page-header {
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow: hidden;
+
+        .ant-page-header-heading {
+          border-bottom: 1px solid #ddd;
+        }
+
+        .ant-page-header-content {
+          flex: 1;
+          padding-top: 0;
+          overflow: hidden;
+          position: relative;
+          z-index: 0;
+        }
+
+        .ant-page-header-heading,
+        .ant-page-header-footer {
+          flex-shrink: 0;
+          padding: 10px 16px;
+          margin: 0;
+        }
+      }
     }
   }
 }

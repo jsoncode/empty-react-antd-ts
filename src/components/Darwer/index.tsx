@@ -4,6 +4,17 @@ import styles from './index.module.less'
 import defaultProps, { config } from './config';
 import RenderFormItem from '@/pages/user/Home/RenderFormItem';
 
+const sortConfig = config.sort((a) => {
+    if (a.type === 'boolean'
+        || (a.type.includes('top') && a.type.includes('bottom')) || a.type.includes('large')
+        || a.type.includes('number')
+    ) {
+        return -1
+    } else {
+        return 1
+    }
+});
+
 const Index: FC = () => {
     const [form] = Form.useForm()
     const [drawerProps, setDrawerProps] = useState<DrawerProps>({})
@@ -86,16 +97,7 @@ const Index: FC = () => {
                 layout="horizontal"
                 onValuesChange={onFormValueChange}
             >
-                {config.sort((a) => {
-                    if (a.type === 'boolean'
-                        || (a.type.includes('top') && a.type.includes('bottom')) || a.type.includes('large')
-                        || a.type.includes('number')
-                    ) {
-                        return -1
-                    } else {
-                        return 1
-                    }
-                }).map(item => {
+                {sortConfig.map(item => {
                     item.default = item.default.replace(/^['"]|['"]$|-/g, '')
 
                     return <Tooltip

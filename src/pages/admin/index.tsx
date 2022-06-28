@@ -1,15 +1,21 @@
-import { Menu } from 'antd';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Button, Dropdown, Menu, PageHeader } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined, MoreOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
 import menuList, { menuMap, openMultipleMenu, openMultipleSubMenu } from './menuList'
 
+console.log(menuMap,menuList)
 const App = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { pathname } = location
+    const [collapsed, setCollapsed] = useState(false);
     const [openKeys, setOpenKeys] = useState<string[]>([])
     const [current, setCurrent] = useState<string[]>([]);
+    const [menuItem, setMenuItem] = useState({
+        title: ''
+    })
 
     // 当选中一个菜单时
     const onSelect = ({ selectedKeys }: any) => {
@@ -18,6 +24,7 @@ const App = () => {
         setCurrent([key]);
 
         let item: any = findMenuByKey(menuList, key)
+        setMenuItem(item)
         if (item?.route) {
             navigate(item.route)
         }
@@ -116,14 +123,32 @@ const App = () => {
 
     // 根据路由变化,动态展开菜单和选中菜单
     useEffect(() => {
+        setMenuItem(menuMap[pathname])
         let opens = findMenuByPath(pathname)
         setOpenKeys(opens)
     }, [pathname])
+
+    const menu = (
+        <Menu
+            style={{ minWidth: 100 }}
+            items={[
+                {
+                    key: '1',
+                    label: 'menu1',
+                },
+                {
+                    key: '2',
+                    label: 'menu2',
+                },
+            ]}
+        />
+    );
 
     return <div className={styles.page}>
         <Menu
             mode="inline"
             items={menuList}
+            inlineCollapsed={collapsed}
             className={styles.menu}
             selectedKeys={current}
             onSelect={onSelect}
@@ -131,7 +156,26 @@ const App = () => {
             onOpenChange={onOpenChange}
         />
         <div className={styles.rightContent}>
-            <Outlet/>
+            <PageHeader
+                title={menuItem?.title}
+                ghost={false}
+                onBack={() => {
+                    setCollapsed(!collapsed)
+                }}
+                backIcon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+                extra={[
+                    <Button key="3">Operation</Button>,
+                    <Button key="2">Operation</Button>,
+                    <Button key="1" type="primary">
+                        Primary
+                    </Button>,
+                    <Dropdown key="more" overlay={menu} placement="bottomRight">
+                        <Button type="text" icon={<MoreOutlined style={{ fontSize: 20 }}/>}/>
+                    </Dropdown>
+                ]}
+            >
+                <Outlet/>
+            </PageHeader>
         </div>
     </div>;
 };

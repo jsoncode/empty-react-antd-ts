@@ -1,5 +1,8 @@
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from "@ant-design/icons";
+import React from 'react';
+import Icon, { HomeOutlined, SettingOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
+import { Link } from "react-router-dom";
+import { ReactComponent as AntSvg } from '@/assets/ant.svg'
 
 // 是否允许同时展开多个菜单 (仅在 mode=inline 下生效)
 const openMultipleMenu: boolean = false
@@ -11,12 +14,19 @@ const routeBase = '/admin'
 let menuList = [
     {
         label: 'Navigation One',
-        icon: <MailOutlined/>,
+        icon: <HomeOutlined/>,
         route: '',
     },
     {
-        label: 'Navigation Two',
-        icon: <AppstoreOutlined/>,
+        label: 'Custom Components',
+        // icon:<HomeOutlined />,
+        icon: <Icon component={AntSvg}/>,
+        children: [
+            {
+                label: 'Item 1',
+                route: '/customComponents',
+            },
+        ],
     },
     {
         label: 'Navigation Three - Submenu',
@@ -78,6 +88,7 @@ let menuList = [
         ],
     },
     {
+        icon: <SettingOutlined/>,
         label: (
             <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
                 Navigation Four - Link
@@ -93,10 +104,12 @@ menuList = deepAddKey(menuList, '')
 
 function deepAddKey(menuList: any, parentKey: string = '') {
     return menuList.map((item: any, index: number) => {
+        item.title = item.label
         item.key = parentKey ? (parentKey + '-' + index) : index.toString()
         if (item.route !== undefined) {
             item.route = routeBase + item.route
             menuMap[item.route] = item;
+            item.label = <Link to={item.route}>{item.label}</Link>
         }
         if (item.children) {
             deepAddKey(item.children, item.key)
