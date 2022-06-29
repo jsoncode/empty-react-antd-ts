@@ -13,18 +13,21 @@ const routeBase = '/admin'
 // 导航列表
 let menuList = [
     {
-        label: 'Navigation One',
+        label: '首页',
         icon: <HomeOutlined/>,
         route: '',
     },
     {
-        label: 'Custom Components',
-        // icon:<HomeOutlined />,
+        label: '自定义组件',
         icon: <Icon component={AntSvg}/>,
         children: [
             {
-                label: 'Item 1',
+                label: 'Drawer',
                 route: '/customComponents',
+            },
+            {
+                label: 'ChineseInput',
+                route: '/customComponents/ChineseInput',
             },
         ],
     },
@@ -118,7 +121,6 @@ function deepAddKey(menuList: any, parentKey: string = '') {
     })
 }
 
-console.log(menuList)
 export {
     menuMap,
     openMultipleMenu,

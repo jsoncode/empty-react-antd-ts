@@ -5,7 +5,6 @@ import { MenuFoldOutlined, MenuUnfoldOutlined, MoreOutlined } from '@ant-design/
 import styles from './index.module.less'
 import menuList, { menuMap, openMultipleMenu, openMultipleSubMenu } from './menuList'
 
-console.log(menuMap,menuList)
 const App = () => {
     const navigate = useNavigate()
     const location = useLocation()

@@ -228,5 +228,5 @@ config.forEach((item: any) => {
         defaultProps[item.key] = value
     }
 })
-console.log(defaultProps)
+
 export default defaultProps

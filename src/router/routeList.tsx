@@ -12,6 +12,7 @@ import AdminHome from '@/pages/admin/Home';
 import AdminList from '@/pages/admin/List';
 import CustomComponents from '@/pages/admin/CustomComponents';
 import Drawer from '@/components/Darwer'
+import ChineseInput from '@/pages/admin/CustomComponents/ChineseInput/ChineseInput';
 // 懒加载会特殊情况下会出现组件闪烁问题
 
 
@@ -58,7 +59,13 @@ export const routeList: RouteObject[] = [
                 children: [{
                     index: true,
                     element: <Drawer/>
-                }]
+                },
+                    {
+                        path: 'ChineseInput',
+                        element: <ChineseInput/>
+                    }
+
+                ]
             },
             {
                 path: 'list', element: <AdminList/>,
