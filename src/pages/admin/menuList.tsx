@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon, { ExperimentOutlined, HomeOutlined, SettingOutlined } from "@ant-design/icons";
+import Icon, { BarsOutlined, ExperimentOutlined, GroupOutlined, HomeOutlined, LinkOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import { ReactComponent as AntSvg } from '@/assets/ant.svg'
@@ -33,7 +33,7 @@ let menuList = [
     },
     {
         label: 'Utils.js',
-        icon: <ExperimentOutlined />,
+        icon: <ExperimentOutlined/>,
         children: [
             {
                 label: 'EasyOut',
@@ -54,8 +54,8 @@ let menuList = [
         ],
     },
     {
-        label: '333333',
-        icon: <SettingOutlined/>,
+        label: '带分组的菜单',
+        icon: <GroupOutlined/>,
         children: [
             {
                 type: 'group',
@@ -85,8 +85,8 @@ let menuList = [
         ],
     },
     {
-        label: 'Navigation Three - Submenu2',
-        icon: <SettingOutlined/>,
+        label: '三级菜单',
+        icon: <BarsOutlined/>,
         children: [
             {
                 label: 'Item 1',
@@ -113,10 +113,10 @@ let menuList = [
         ],
     },
     {
-        icon: <SettingOutlined/>,
+        icon: <LinkOutlined/>,
         label: (
             <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                Navigation Four - Link
+                外链菜单
             </a>
         ),
     },
