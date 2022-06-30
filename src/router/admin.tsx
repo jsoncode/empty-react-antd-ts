@@ -1,8 +1,9 @@
+import React from "react";
 import Admin from "@/pages/admin";
 import AdminHome from "@/pages/admin/Home";
 import AdminList from "@/pages/admin/List";
 import { customComponents } from "@/router/customComponents";
-import React from "react";
+import { utilsComponents } from "@/router/utilsComponents";
 
 export const admin = {
     path: '/admin', element: <Admin/>,
@@ -14,7 +15,7 @@ export const admin = {
         {
             path: 'list', element: <AdminList/>,
         },
-
-        { ...customComponents }
+        ...customComponents,
+        ...utilsComponents,
     ]
 }

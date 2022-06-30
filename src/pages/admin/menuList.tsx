@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon, { HomeOutlined, SettingOutlined } from "@ant-design/icons";
+import Icon, { ExperimentOutlined, HomeOutlined, SettingOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import { ReactComponent as AntSvg } from '@/assets/ant.svg'
@@ -22,21 +22,39 @@ let menuList = [
         icon: <Icon component={AntSvg}/>,
         children: [
             {
-                label: 'Drawer',
-                route: '/customComponents',
+                label: '可配置抽屉组件',
+                route: '/Drawer',
             },
             {
                 label: 'ChineseInput',
-                route: '/customComponents/ChineseInput',
-            },
-            {
-                label: 'Cascader',
-                route: '/customComponents/Cascader',
+                route: '/ChineseInput',
             },
         ],
     },
     {
-        label: 'Navigation Three - Submenu',
+        label: 'Utils.js',
+        icon: <ExperimentOutlined />,
+        children: [
+            {
+                label: 'EasyOut',
+                route: '/EasyOut',
+            },
+            {
+                label: '原生Ajax',
+                route: '/Ajax',
+            },
+            {
+                label: 'IndexDB',
+                route: '/IndexDB',
+            },
+            {
+                label: 'DoubleCharCodeLength',
+                route: '/DoubleCharCodeLength',
+            },
+        ],
+    },
+    {
+        label: '333333',
         icon: <SettingOutlined/>,
         children: [
             {
