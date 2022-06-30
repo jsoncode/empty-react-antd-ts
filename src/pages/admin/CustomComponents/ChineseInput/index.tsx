@@ -11,10 +11,7 @@ const Index: FC = () => {
         const v: string = e.target.value;
         setValue(v)
 
-        valueList.push(v)
-        if (valueList.length > 10) {
-            valueList.shift()
-        }
+        valueList.unshift(v)
         setValueList(valueList)
     }
     const onFocus = () => {
@@ -33,7 +30,7 @@ const Index: FC = () => {
             onChange={onChange}
             onFocus={onFocus}
         />
-        <div className={styles.label}>自定义输入框:</div>
+        <div className={styles.label}>ChineseInput:</div>
         <ChineseInput
             value={value}
             onChange={onChange}

@@ -29,6 +29,10 @@ let menuList = [
                 label: 'ChineseInput',
                 route: '/customComponents/ChineseInput',
             },
+            {
+                label: 'Cascader',
+                route: '/customComponents/Cascader',
+            },
         ],
     },
     {

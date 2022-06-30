@@ -8,7 +8,7 @@ interface IProps extends InputProps {
   value?: string;
 }
 
-const ScrollSelect: FC<IProps> = (
+const Index: FC<IProps> = (
   {
     value = '',
     onChange,
@@ -61,4 +61,4 @@ const ScrollSelect: FC<IProps> = (
   );
 };
 
-export default ScrollSelect;
+export default Index;
