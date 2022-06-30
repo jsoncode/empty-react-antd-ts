@@ -1,12 +1,9 @@
 import React, { FC } from 'react';
-import { Link } from "react-router-dom";
 import styles from './index.module.less'
 
 const Index: FC = () => {
     return <div className={styles.page}>
         <h1>test2</h1>
-
-        <Link to={'/admin/list'}>goto list</Link>
     </div>
 }
 
