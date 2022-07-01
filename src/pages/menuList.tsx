@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon, { BarsOutlined, ExperimentOutlined, GroupOutlined, HomeOutlined, LinkOutlined } from "@ant-design/icons";
+import Icon, { ExperimentOutlined, HomeOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import { ReactComponent as AntSvg } from '@/assets/ant.svg'
@@ -9,23 +9,36 @@ const openMultipleMenu: boolean = false
 // 是否运行同时展开多个子菜单
 const openMultipleSubMenu: boolean = true
 // 导航列表
-let menuList = [
+let list = [
     {
         label: '首页',
         icon: <HomeOutlined/>,
         route: '',
+        key: '0',
     },
     {
         label: '自定义组件',
         icon: <Icon component={AntSvg}/>,
         children: [
             {
-                label: '可配置抽屉组件',
-                route: '/Drawer',
+                type: 'group',
+                label: '可配置组件',
+                children: [
+                    {
+                        label: 'Drawer',
+                        route: '/Drawer',
+                    },
+                ],
             },
             {
-                label: 'ChineseInput',
-                route: '/ChineseInput',
+                type: 'group',
+                label: '自定义组件',
+                children: [
+                    {
+                        label: 'ChineseInput',
+                        route: '/ChineseInput',
+                    },
+                ],
             },
         ],
     },
@@ -34,97 +47,45 @@ let menuList = [
         icon: <ExperimentOutlined/>,
         children: [
             {
-                label: 'EasyOut',
-                route: '/EasyOut',
+                label: '扩展函数',
+                children: [
+                    {
+                        label: 'EasyOut',
+                        route: '/EasyOut',
+                    },
+                    {
+                        label: 'DoubleCharCodeLength',
+                        route: '/DoubleCharCodeLength',
+                    },
+                ],
             },
             {
-                label: '原生Ajax',
-                route: '/Ajax',
-            },
-            {
-                label: 'IndexDB',
-                route: '/IndexDB',
-            },
-            {
-                label: 'DoubleCharCodeLength',
-                route: '/DoubleCharCodeLength',
-            },
+                label: '原生封装',
+                children: [
+                    {
+                        label: '原生Ajax',
+                        route: '/Ajax',
+                    },
+                    {
+                        label: 'IndexDB',
+                        route: '/IndexDB',
+                    },
+                ]
+            }
         ],
-    },
-    {
-        label: '带分组的菜单',
-        icon: <GroupOutlined/>,
-        children: [
-            {
-                type: 'group',
-                label: 'Item 1',
-                children: [
-                    {
-                        label: 'Option 2',
-                    },
-                ],
-            },
-            {
-                type: 'group',
-                label: 'Item 2',
-                children: [
-                    {
-                        label: 'Option 3',
-                    },
-                    {
-                        label: 'Option 4',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        label: '三级菜单',
-        icon: <BarsOutlined/>,
-        children: [
-            {
-                label: 'Item 1',
-                children: [
-                    {
-                        label: 'Option 1',
-                    },
-                    {
-                        label: 'Option 2',
-                    },
-                ],
-            },
-            {
-                label: 'Item 2',
-                children: [
-                    {
-                        label: 'Option 3',
-                    },
-                    {
-                        label: 'Option 4',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        icon: <LinkOutlined/>,
-        label: (
-            <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                外链菜单
-            </a>
-        ),
     },
 ];
+
 
 let menuMap: any = {}
 
 // 给菜单加上统一的key属性
-menuList = deepAddKey(menuList, '')
+const menuList: MenuProps['items'] = deepAddKey(list, '')
 
 function deepAddKey(menuList: any, parentKey: string = '') {
     return menuList.map((item: any, index: number) => {
         item.title = item.label
-        item.key = parentKey ? (parentKey + '-' + index) : index.toString()
+        item.key = parentKey ? (parentKey + '-' + index.toString()) : index.toString()
         if (item.route !== undefined) {
             menuMap[item.route] = item;
             item.label = <Link to={item.route}>{item.label}</Link>
@@ -142,4 +103,4 @@ export {
     openMultipleSubMenu,
 }
 
-export default menuList as MenuProps['items']
+export default menuList
