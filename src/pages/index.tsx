@@ -94,6 +94,7 @@ const Index = () => {
                 opens.push(k)
             })
         }
+
         return opens
     }
 
@@ -121,16 +122,7 @@ const Index = () => {
     // 根据路由变化,动态展开菜单和选中菜单
     useEffect(() => {
         setMenuItem(menuMap[pathname])
-        let newOpenKeys = [...openKeys]
-        let opens = findMenuByPath(pathname)
-        if (opens[0] === newOpenKeys[0] || newOpenKeys.length === 0) {
-            opens.forEach(item => {
-                if (!newOpenKeys.includes(item)) {
-                    newOpenKeys.push(item)
-                }
-            })
-        }
-        setOpenKeys(newOpenKeys)
+        setOpenKeys(findMenuByPath(pathname))
     }, [pathname])
 
     const menu = (

@@ -1,3 +1,15 @@
+:root {
+    --menu-max-width: 300px;
+    --menu-shadow: 2px 0 10px 2px rgba(0, 0, 0, 0.2);
+    --page-header-heading: 1px 0 1px 1px rgba(0, 0, 0, 0.2);
+    --hljs-background: #001529;
+    --scroll-width: 10px;
+    --scroll-height: 10px;
+    --scroll-radius: 5px;
+    --scroll-color: rgba(100, 100, 100, .5);
+    --scroll-background: rgba(100, 100, 100, .1);
+}
+
 html, body, #root, .pageLoading {
     height: 100%;
     overflow: hidden;
@@ -13,25 +25,18 @@ html, body, #root, .pageLoading {
 
 .hljs {
     border-radius: 5px;
-    background-color: #001529;
+    background-color: var(--hljs-background);
 }
-
-.hljs::-webkit-scrollbar {
-    background-color: rgba(255, 255, 255, .1);
-}
-
-.hljs::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, .3);
-}
-
 
 ::-webkit-scrollbar {
-    width: 6px;
-    background-color: rgba(0, 0, 0, .1);
+    width: var(--scroll-width);
+    height: var(--scroll-height);
+    background-color: var(--scroll-background)
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: var(--scroll-color);
+    border-radius: var(--scroll-radius);
 }
 
 .pageLoading {
