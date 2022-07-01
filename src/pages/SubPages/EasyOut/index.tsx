@@ -1,4 +1,4 @@
-import { Alert, Button } from 'antd';
+import { Alert, Button, message } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 import { easyOut, renderHLJS } from '@/utils';
 import styles from './index.module.less'
@@ -18,6 +18,9 @@ const Index: FC = () => {
         easyOut(left, Math.abs(300 - left), 10, (current: number, isEnd: boolean) => {
             setMoving(!isEnd)
             setLeft(current)
+            if (isEnd) {
+                message.success('动画结束')
+            }
         })
     }
 

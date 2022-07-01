@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { DB, renderHLJS } from '@/utils';
 import styles from './index.module.less'
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 
 const Index: FC = () => {
 
@@ -20,7 +20,12 @@ const Index: FC = () => {
             v1: '111',
             v2: '222',
         })
-        console.log(result)
+
+        notification.success({
+            message: '保存成功',
+            placement: 'top',
+            description: JSON.stringify(result, null, 4),
+        });
     }
 
     return <div className={styles.page}>
