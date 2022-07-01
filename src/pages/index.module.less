@@ -8,6 +8,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     user-select: none;
+    box-shadow: 2px 0 10px 2px rgba(0, 0, 0, 0.3);
+    z-index: 1;
   }
 
   .rightContent {
@@ -16,6 +18,8 @@
     align-items: stretch;
     flex-direction: column;
     overflow: hidden;
+    position: relative;
+    z-index: 0;
 
     > div {
       flex: 1;
@@ -30,7 +34,7 @@
         overflow: hidden;
 
         .ant-page-header-heading {
-          border-bottom: 1px solid #ddd;
+          box-shadow: 1px 0 1px 1px rgba(0, 0, 0, 0.2);
         }
 
         .ant-page-header-content {

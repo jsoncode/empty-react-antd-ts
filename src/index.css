@@ -13,6 +13,7 @@ html, body, #root, .pageLoading {
 
 .hljs {
     border-radius: 5px;
+    background-color: #001529;
 }
 
 .hljs::-webkit-scrollbar {

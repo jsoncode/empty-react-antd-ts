@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Dropdown, Menu, PageHeader } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, MoreOutlined } from '@ant-design/icons';
-import styles from './index.module.less'
 import menuList, { menuMap, openMultipleMenu, openMultipleSubMenu } from '@/components/MenuLIst'
+import styles from './index.module.less'
 
 const Index = () => {
     const navigate = useNavigate()
@@ -152,6 +152,7 @@ const Index = () => {
     return <div className={styles.page}>
         <Menu
             mode="inline"
+            theme="dark"
             items={menuList}
             inlineCollapsed={collapsed}
             className={styles.menu}
@@ -169,11 +170,6 @@ const Index = () => {
                 }}
                 backIcon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                 extra={[
-                    <Button key="3">Operation</Button>,
-                    <Button key="2">Operation</Button>,
-                    <Button key="1" type="primary">
-                        Primary
-                    </Button>,
                     <Dropdown key="more" overlay={menu} placement="bottomRight">
                         <Button type="text" icon={<MoreOutlined style={{ fontSize: 20 }}/>}/>
                     </Dropdown>
