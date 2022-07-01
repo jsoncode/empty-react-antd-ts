@@ -14,7 +14,6 @@ let list = [
         label: '首页',
         icon: <HomeOutlined/>,
         route: '',
-        key: '0',
     },
     {
         label: '自定义组件',
