@@ -33,7 +33,6 @@ const Index = () => {
     const onOpenChange = (opens: string[]) => {
         let last: string = opens[opens.length - 1]
         let newOpen: string[] = []
-        console.log(last)
         if (last) {
             if (!openMultipleMenu && last.split('-').length === 1) {
                 newOpen = [last]
@@ -84,7 +83,7 @@ const Index = () => {
             setCurrent([key])
 
             let keyPath = key.split('-')
-            // 最后一个不是二级菜单,肯定是一个菜单项,所以不需要设置到openKeys里
+            // 最后一个不是二级菜单,肯定是一个页面,所以不需要设置到openKeys里
             keyPath.pop()
 
             keyPath.forEach((k: string) => {
@@ -94,7 +93,6 @@ const Index = () => {
                 }
                 opens.push(k)
             })
-
         }
         return opens
     }
@@ -123,9 +121,16 @@ const Index = () => {
     // 根据路由变化,动态展开菜单和选中菜单
     useEffect(() => {
         setMenuItem(menuMap[pathname])
+        let newOpenKeys = [...openKeys]
         let opens = findMenuByPath(pathname)
-        console.log(openKeys, opens)
-        setOpenKeys(opens)
+        if (opens[0] === newOpenKeys[0] || newOpenKeys.length === 0) {
+            opens.forEach(item => {
+                if (!newOpenKeys.includes(item)) {
+                    newOpenKeys.push(item)
+                }
+            })
+        }
+        setOpenKeys(newOpenKeys)
     }, [pathname])
 
     const menu = (
