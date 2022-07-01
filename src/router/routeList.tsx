@@ -9,6 +9,7 @@ import EasyOut from "@/pages/SubPages/EasyOut";
 import Ajax from "@/pages/SubPages/Ajax";
 import IndexDB from "@/pages/SubPages/IndexDB";
 import DoubleCharCodeLength from "@/pages/SubPages/DoubleCharCodeLength";
+import CompanyDetail from '@/pages/SubPages/CompanyDetail';
 
 // 主路由
 export const routeList: RouteObject[] = [
@@ -43,6 +44,10 @@ export const routeList: RouteObject[] = [
             {
                 path: 'DoubleCharCodeLength',
                 element: <DoubleCharCodeLength/>
+            },
+            {
+                path: 'CompanyDetail',
+                element: <CompanyDetail/>
             },
             {
                 path: '*', element: <NotFound/>,
