@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Button, Drawer, DrawerProps, Form, Tooltip } from 'antd';
 import styles from './index.module.less'
 import defaultProps, { config } from './config';
-import RenderFormItem from '@/pages/user/Home/RenderFormItem';
+import RenderFormItem from '@/components/Darwer/RenderFormItem';
 
 const sortConfig = config.sort((a) => {
     if (a.type === 'boolean'

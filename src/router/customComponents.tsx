@@ -1,5 +1,5 @@
 import Drawer from "@/components/Darwer";
-import ChineseInput from "@/pages/admin/SubPages/ChineseInput";
+import ChineseInput from "@/pages/SubPages/ChineseInput";
 import React from "react";
 
 export const customComponents = [

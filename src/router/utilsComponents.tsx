@@ -1,8 +1,8 @@
 import React from "react";
-import EasyOut from "@/pages/admin/SubPages/EasyOut";
-import Ajax from "@/pages/admin/SubPages/Ajax";
-import IndexDB from "@/pages/admin/SubPages/IndexDB";
-import DoubleCharCodeLength from "@/pages/admin/SubPages/DoubleCharCodeLength";
+import EasyOut from "@/pages/SubPages/EasyOut";
+import Ajax from "@/pages/SubPages/Ajax";
+import IndexDB from "@/pages/SubPages/IndexDB";
+import DoubleCharCodeLength from "@/pages/SubPages/DoubleCharCodeLength";
 
 export const utilsComponents = [
     {

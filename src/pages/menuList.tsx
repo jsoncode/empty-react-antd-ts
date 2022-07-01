@@ -8,8 +8,6 @@ import { ReactComponent as AntSvg } from '@/assets/ant.svg'
 const openMultipleMenu: boolean = false
 // 是否运行同时展开多个子菜单
 const openMultipleSubMenu: boolean = true
-
-const routeBase = '/admin'
 // 导航列表
 let menuList = [
     {
@@ -61,10 +59,6 @@ let menuList = [
                 type: 'group',
                 label: 'Item 1',
                 children: [
-                    {
-                        label: 'Option 1',
-                        route: '/list'
-                    },
                     {
                         label: 'Option 2',
                     },
@@ -132,7 +126,6 @@ function deepAddKey(menuList: any, parentKey: string = '') {
         item.title = item.label
         item.key = parentKey ? (parentKey + '-' + index) : index.toString()
         if (item.route !== undefined) {
-            item.route = routeBase + item.route
             menuMap[item.route] = item;
             item.label = <Link to={item.route}>{item.label}</Link>
         }
