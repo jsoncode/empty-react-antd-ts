@@ -65,6 +65,7 @@ export function ajax(method: string, url: string, progress: Function, success: F
 }
 
 export function dbLength(str: string) {
+    // dbLength('中文123'); // 7
     //判断双字节字符串长度
     let leg = str.length;
     for (let i = 0; i < str.length; i++) {
@@ -86,6 +87,18 @@ type DbOptionProps = {
 }
 
 export class DB {
+    /* demo
+    const db = new DB({
+        dbName: 'school',
+        tbName: 'class',
+        primaryKey: 'id',
+    })
+    const result = await db.saveIndexedDB({
+        id: 'test111',
+        v1: '111',
+        v2: '222',
+    })
+    */
     private defaultOptions: DbOptionProps = {
         // 数据库名称
         dbName: 'school',

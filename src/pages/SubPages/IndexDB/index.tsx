@@ -29,7 +29,6 @@ const Index: FC = () => {
                 保存一条数据
             </Button>
         </div>
-        <pre><code className={'language-javascript'}>{onClick.toString()}</code></pre>
         <pre><code className={'language-javascript'}>{DB.toString()}</code></pre>
     </div>
 }

@@ -14,7 +14,7 @@ const Index: FC = () => {
     }
 
     return <div className={styles.page}>
-        <pre><code className={'language-javascript'}>{test.toString() + '\n\n' + dbLength.toString()}</code></pre>
+        <pre><code className={'language-javascript'}>{dbLength.toString()}</code></pre>
     </div>
 }
 

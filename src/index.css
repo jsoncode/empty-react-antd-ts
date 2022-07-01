@@ -11,6 +11,19 @@ html, body, #root, .pageLoading {
     flex: 1;
 }
 
+.hljs {
+    border-radius: 5px;
+}
+
+.hljs::-webkit-scrollbar {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.hljs::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, .3);
+}
+
+
 ::-webkit-scrollbar {
     width: 6px;
     background-color: rgba(0, 0, 0, .1);
