@@ -3,9 +3,9 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Dropdown, Menu, PageHeader } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, MoreOutlined } from '@ant-design/icons';
 import styles from './index.module.less'
-import menuList, { menuMap, openMultipleMenu, openMultipleSubMenu } from './menuList'
+import menuList, { menuMap, openMultipleMenu, openMultipleSubMenu } from '@/components/MenuLIst'
 
-const App = () => {
+const Index = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { pathname } = location
@@ -21,7 +21,6 @@ const App = () => {
         let key = selectedKeys[0]
         // 如果menu配置了multiple,这里selectedKeys会有多个值.否则只有一个值.
         setCurrent([key]);
-
         let item: any = findMenuByKey(menuList, key)
         setMenuItem(item)
         if (item?.route) {
@@ -34,6 +33,7 @@ const App = () => {
     const onOpenChange = (opens: string[]) => {
         let last: string = opens[opens.length - 1]
         let newOpen: string[] = []
+        console.log(last)
         if (last) {
             if (!openMultipleMenu && last.split('-').length === 1) {
                 newOpen = [last]
@@ -124,6 +124,7 @@ const App = () => {
     useEffect(() => {
         setMenuItem(menuMap[pathname])
         let opens = findMenuByPath(pathname)
+        console.log(openKeys, opens)
         setOpenKeys(opens)
     }, [pathname])
 
@@ -179,4 +180,4 @@ const App = () => {
     </div>;
 };
 
-export default App;
+export default Index;
