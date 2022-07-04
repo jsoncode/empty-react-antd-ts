@@ -1,7 +1,37 @@
 export const renderHLJS = () => {
-    Array.from(document.querySelectorAll('[class*="language-"]')).forEach(item => {
-        (window as any).hljs.highlightElement(item)
-    })
+    let script: any = document.getElementById('highLightJs')
+    if (!script) {
+        let loaded = 0;
+        script = document.createElement('script')
+        script.src = '/highlight.min.js'
+        script.id = 'highLightJs'
+        document.body.appendChild(script)
+        script.addEventListener('load', () => {
+            loaded++;
+            if (loaded === 2) {
+                run()
+            }
+        })
+
+        let css = document.createElement('link')
+        css.rel = "stylesheet"
+        css.href = '/atom-one-dark.min.css';
+        document.head.appendChild(css)
+        css.addEventListener('load', () => {
+            loaded++;
+            if (loaded === 2) {
+                run()
+            }
+        })
+    } else {
+        run()
+    }
+
+    function run() {
+        Array.from(document.querySelectorAll('[class*="language-"]')).forEach(item => {
+            (window as any).hljs.highlightElement(item)
+        })
+    }
 }
 
 /**
