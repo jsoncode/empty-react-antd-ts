@@ -16,13 +16,11 @@
   },
   "scripts": {
     "start": "cross-env PORT=4000 craco start",
-    "build": "cross-env GENERATE_SOURCEMAP=false craco build",
-    "test": "craco test"
+    "build": "cross-env GENERATE_SOURCEMAP=false craco build"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
