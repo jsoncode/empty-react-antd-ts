@@ -221,6 +221,7 @@ config.forEach((item: any) => {
     if (value) {
         if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
             try {
+                // eslint-disable-next-line
                 value = new Function('return ' + value)()
             } catch (e) {
             }

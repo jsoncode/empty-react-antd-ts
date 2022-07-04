@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
 export const renderHLJS = () => {
     Array.from(document.querySelectorAll('[class*="language-"]')).forEach(item => {
         (window as any).hljs.highlightElement(item)
@@ -19,7 +17,7 @@ export function easyOut(start: number, end: number, rate: number, callback: (cur
     // })
 
     const _end = end;
-    if (start == end) {
+    if (start === end) {
         return;
     }
     end = end || 0;
@@ -72,7 +70,7 @@ export function dbLength(str: string) {
         let s = str[i]
         let hex = s.charCodeAt(0).toString(16);
         //转换Unicode 编码,再转16进制
-        if (hex.length == 4) {
+        if (hex.length === 4) {
             leg++;
         }
     }
@@ -202,7 +200,7 @@ export class DB {
                 result.onsuccess = () => {
                     loaded++;
                     if (loaded === list.length) {
-                        if (list.length == 1) {
+                        if (list.length === 1) {
                             success(list[0]);
                         } else {
                             success(list);
@@ -212,7 +210,7 @@ export class DB {
                 result.onerror = () => {
                     loaded++;
                     if (loaded === list.length) {
-                        if (list.length == 1) {
+                        if (list.length === 1) {
                             error(list[0]);
                         } else {
                             error(list);
