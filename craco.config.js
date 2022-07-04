@@ -1,6 +1,5 @@
 const path = require("path");
 const CracoLessPlugin = require('craco-less')
-const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 
 module.exports = {
     babel: {
@@ -18,12 +17,6 @@ module.exports = {
     webpack: {
         alias: {
             '@': path.resolve('./src'),
-        },
-        plugins: {
-            add: [
-                // 查看打包的进度
-                new SimpleProgressWebpackPlugin()
-            ]
         },
     },
     devServer: {
