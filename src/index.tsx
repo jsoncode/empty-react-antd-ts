@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import PageRouter from '@/router'
 import './index.css'
 import { Spin } from 'antd';
@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <BrowserRouter>
+    <HashRouter>
         {/*
             使用懒加载管理路由,必须用Suspense进行处理
             const App = React.lazy(() => import("@/pages/App"));
@@ -23,5 +23,5 @@ root.render(
         >
             <PageRouter/>
         </Suspense>
-    </BrowserRouter>
+    </HashRouter>
 );

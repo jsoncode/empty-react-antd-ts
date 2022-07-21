@@ -3,7 +3,7 @@ export const renderHLJS = () => {
     if (!script) {
         let loaded = 0;
         script = document.createElement('script')
-        script.src = '/highlight.min.js'
+        script.src = 'highlight.min.js'
         script.id = 'highLightJs'
         document.body.appendChild(script)
         script.addEventListener('load', () => {
@@ -15,7 +15,7 @@ export const renderHLJS = () => {
 
         let css = document.createElement('link')
         css.rel = "stylesheet"
-        css.href = '/atom-one-dark.min.css';
+        css.href = 'atom-one-dark.min.css';
         document.head.appendChild(css)
         css.addEventListener('load', () => {
             loaded++;
